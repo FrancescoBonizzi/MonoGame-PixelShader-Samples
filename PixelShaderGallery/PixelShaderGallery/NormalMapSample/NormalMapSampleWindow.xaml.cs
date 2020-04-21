@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -28,6 +27,14 @@ namespace PixelShaderGallery.NormalMapSample
             LightDirectionX.ValueChanged += (obj, args) => _game.SetLightDirectionX((float)args.NewValue);
             LightDirectionY.ValueChanged += (obj, args) => _game.SetLightDirectionY((float)args.NewValue);
             LightDirectionZ.ValueChanged += (obj, args) => _game.SetLightDirectionZ((float)args.NewValue);
+
+            LightColorX.ValueChanged += (obj, args) => _game.SetLightColorX((float)args.NewValue);
+            LightColorY.ValueChanged += (obj, args) => _game.SetLightColorY((float)args.NewValue);
+            LightColorZ.ValueChanged += (obj, args) => _game.SetLightColorZ((float)args.NewValue);
+
+            AmbienceColorX.ValueChanged += (obj, args) => _game.SetAmbienceColorX((float)args.NewValue);
+            AmbienceColorY.ValueChanged += (obj, args) => _game.SetAmbienceColorY((float)args.NewValue);
+            AmbienceColorZ.ValueChanged += (obj, args) => _game.SetAmbienceColorZ((float)args.NewValue);
         }
 
         protected override void OnClosing(CancelEventArgs e)

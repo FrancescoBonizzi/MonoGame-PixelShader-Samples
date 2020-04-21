@@ -19,6 +19,8 @@ namespace PixelShaderGallery.NormalMapSample
         private Texture2D _cellNormalMap;
         private Effect _normalMapShader;
         private Vector3 _lightDirection = Vector3.Zero;
+        private Vector3 _lightColor = Vector3.One;
+        private Vector3 _ambienceColor = new Vector3(0.35f);
 
         public event EventHandler GameInitialized;
 
@@ -66,26 +68,38 @@ namespace PixelShaderGallery.NormalMapSample
 
         public void SetNormalMap(string path)
         {
-            using (var fileStream = new FileStream("NormalMapSample/Content/cell_normal.png", FileMode.Open))
+            using (var fileStream = new FileStream(path, FileMode.Open))
             {
                 _cellNormalMap = Texture2D.FromStream(_graphicsDeviceManager.GraphicsDevice, fileStream);
             }
         }
 
         public void SetLightDirectionX(float value)
-        {
-            _lightDirection.X = value;
-        }
+            => _lightDirection.X = value;
 
         public void SetLightDirectionY(float value)
-        {
-            _lightDirection.Y = value;
-        }
+            => _lightDirection.Y = value;
 
         public void SetLightDirectionZ(float value)
-        {
-            _lightDirection.Z = value;
-        }
+            => _lightDirection.Z = value;
+
+        public void SetLightColorX(float value)
+            => _lightColor.X = value;
+
+        public void SetLightColorY(float value)
+            => _lightColor.Y = value;
+
+        public void SetLightColorZ(float value)
+            => _lightColor.Z = value;
+
+        public void SetAmbienceColorX(float value)
+            => _ambienceColor.X = value;
+
+        public void SetAmbienceColorY(float value)
+            => _ambienceColor.Y = value;
+
+        public void SetAmbienceColorZ(float value)
+            => _ambienceColor.Z = value;
 
         protected override void Update(GameTime gameTime)
         {
@@ -123,6 +137,8 @@ namespace PixelShaderGallery.NormalMapSample
             GraphicsDevice.SetRenderTarget(defaultRenderTarget);
             GraphicsDevice.Clear(Color.Black);
             _normalMapShader.Parameters["LightDirection"].SetValue(_lightDirection);
+            _normalMapShader.Parameters["LightColor"].SetValue(_lightColor);
+            _normalMapShader.Parameters["AmbientColor"].SetValue(_ambienceColor);
             _normalMapShader.Parameters["NormalTexture"].SetValue((Texture2D)_normalMapRenderTarget);
             _normalMapShader.CurrentTechnique.Passes[0].Apply();
 
