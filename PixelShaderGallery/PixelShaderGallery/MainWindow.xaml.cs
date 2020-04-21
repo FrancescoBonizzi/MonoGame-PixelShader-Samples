@@ -14,5 +14,11 @@ namespace PixelShaderGallery
             var gallery = new NormalMapSample.NormalMapSampleWindow();
             gallery.ShowDialog();
         }
+
+        private void CircularNormalMapButton_Click(object sender, RoutedEventArgs e)
+        {
+            var gallery = new CircularNormalMapSample.CircularNormalMapSampleWindow();
+            gallery.ShowDialog();
+        }
     }
 }
