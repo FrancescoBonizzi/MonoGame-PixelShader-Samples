@@ -121,7 +121,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
         protected override void Update(GameTime gameTime)
         {
             var mouse = _mouse.GetState();
-            _lightPosition = new Vector3(mouse.X, mouse.Y, 0.5f);
+            _lightPosition = new Vector3(mouse.X, mouse.Y, 0f);
         }
 
         protected override void Draw(GameTime time)

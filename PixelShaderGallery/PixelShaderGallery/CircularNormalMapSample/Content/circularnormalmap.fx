@@ -53,23 +53,23 @@ VertexShaderOutput VS(VertexShaderInput input)
 float4 PS(VertexShaderOutput input) : COLOR0
 {
 	// input.PosWorld how has the Position of this Pixel in World Space
-	float3 lightdir = normalize(LightPosition - input.PosWorld); // this is now the direction of light for this pixel
-
-	// do the same, what you do for a regular directional light as you now have the light direction for this pixel and that pointlight, you may also want to calculate fallof distance etc depending on distance - this is where it gets pretty specific
-	// TODO Introduce fall-off of light intensity
-	// TODO float diffuseLighting = saturate(dot(normal, -lightDir));
-	// TODO diffuseLighting *= (LightDistanceSquared / dot(LightPosition - input.PosWorld, LightPosition - input.PosWorld));
+	float3 lightdir = normalize(input.PosWorld - LightPosition); // this is now the direction of light for this pixel
 
 	// Look up the texture value
 	float4 tex = ScreenTexture.Sample(TextureSampler, input.TexCoords);
 
 	// Look up the normalmap value
-	float4 normal = 2 * NormalTexture.Sample(NormalSampler, input.TexCoords) - 1;
+	//float4 normal = 2 * NormalTexture.Sample(NormalSampler, input.TexCoords) - 1;
+	float3 normal = normalize((2 * NormalTexture.Sample(NormalSampler, input.TexCoords)) - 1);
 
-	// Compute lighting.
-	float lightAmount = saturate(dot(normal.xyz, lightdir));
+	// do the same, what you do for a regular directional light as you now have the light direction for this pixel and that pointlight, you may also want to calculate fallof distance etc depending on distance - this is where it gets pretty specific
+	// TODO Introduce fall-off of light intensity
+	// TODO diffuseLighting *= (LightDistanceSquared / dot(LightPosition - input.PosWorld, LightPosition - input.PosWorld));
+
+	// Compute lighting
+	float lightAmount = saturate(dot(normal, -lightdir));
 	input.Color.rgb *= AmbientColor + (lightAmount * LightColor);
-
+	
 	return input.Color * tex;
 
 	// if you have multiple pointlights, do a loop over every light you have and combine the outcome
