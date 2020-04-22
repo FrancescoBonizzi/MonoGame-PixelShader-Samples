@@ -108,7 +108,6 @@ namespace PixelShaderGallery.NormalMapSample
 
         protected override void Draw(GameTime time)
         {
-            //GraphicsDevice.Clear(Color.Black);
             var defaultRenderTarget = (RenderTarget2D)GraphicsDevice.GetRenderTargets()[0].RenderTarget;
 
             // Draws everything normal

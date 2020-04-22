@@ -114,7 +114,6 @@ namespace PixelShaderGallery.CircularNormalMapSample
 
         protected override void Draw(GameTime time)
         {
-            //GraphicsDevice.Clear(Color.Black);
             var defaultRenderTarget = (RenderTarget2D)GraphicsDevice.GetRenderTargets()[0].RenderTarget;
 
             // Draws everything normal
@@ -128,7 +127,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
                 }
             _spriteBatch.End();
 
-            //// Draws the normal map
+            // Draws the normal map
             GraphicsDevice.SetRenderTarget(_normalMapRenderTarget);
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
@@ -139,7 +138,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
                 }
             _spriteBatch.End();
 
-            //// Compose postprocessed image
+            // Compose postprocessed image
             GraphicsDevice.SetRenderTarget(defaultRenderTarget);
             GraphicsDevice.Clear(Color.Black);
             _circularNormalMapShader.Parameters["LightPosition"].SetValue(_lightPosition);
