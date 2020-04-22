@@ -2,8 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
+using MonoGame.Framework.WpfInterop.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,6 +29,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
         private Vector3 _ambienceColor = new Vector3(0.35f);
 
         private Matrix _worldMatrix;
+        private WpfMouse _mouse;
 
         public event EventHandler GameInitialized;
 
@@ -52,8 +55,24 @@ namespace PixelShaderGallery.CircularNormalMapSample
                 GraphicsDevice.PresentationParameters.BackBufferWidth,
                 GraphicsDevice.PresentationParameters.BackBufferHeight);
 
-            _worldMatrix = Matrix.CreateScale(1f, 1f, 1f);
+            _worldMatrix = Matrix.CreateTranslation(new Vector3(-new Vector2(0, 0), 0.0f));
+            _mouse = new WpfMouse(this);
         }
+
+        private Matrix GetProjectionMatrix()
+        {
+            var projection = Matrix.CreateOrthographicOffCenter(0, GraphicsDevice.Viewport.Width,
+                GraphicsDevice.Viewport.Height, 0, -1, 0);
+            Matrix.Multiply(ref _worldMatrix, ref projection, out projection);
+            return projection;
+        }
+
+        public Vector2 ScreenToWorld(Vector2 screenPosition)
+        {
+            return Vector2.Transform(screenPosition - new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height),
+                Matrix.Invert(_worldMatrix));
+        }
+
 
         public void LoadInitializationData()
         {
@@ -101,15 +120,8 @@ namespace PixelShaderGallery.CircularNormalMapSample
 
         protected override void Update(GameTime gameTime)
         {
-            var mouse = Mouse.GetState();
-            var pointPosition = PointToScreen(mouse.X, mouse.Y);
-            _lightPosition = new Vector3(pointPosition.X, pointPosition.Y, 0.5f);
-        }
-
-        private Point PointToScreen(int x, int y)
-        {
-            var invertedMatrix = Matrix.Invert(_worldMatrix);
-            return Vector2.Transform(new Vector2(x, y), invertedMatrix).ToPoint();
+            var mouse = _mouse.GetState();
+            _lightPosition = new Vector3(mouse.X, mouse.Y, 0.5f);
         }
 
         protected override void Draw(GameTime time)
@@ -145,7 +157,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
             _circularNormalMapShader.Parameters["LightColor"].SetValue(_lightColor);
             _circularNormalMapShader.Parameters["AmbientColor"].SetValue(_ambienceColor);
             _circularNormalMapShader.Parameters["World"].SetValue(_worldMatrix);
-            _circularNormalMapShader.Parameters["ViewProjection"].SetValue(_worldMatrix);
+            _circularNormalMapShader.Parameters["ViewProjection"].SetValue(GetProjectionMatrix());
             _circularNormalMapShader.Parameters["NormalTexture"].SetValue((Texture2D)_normalMapRenderTarget);
             _circularNormalMapShader.CurrentTechnique.Passes[0].Apply();
             
