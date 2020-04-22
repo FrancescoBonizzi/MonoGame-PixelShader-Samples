@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,11 @@ namespace PixelShaderGallery.CircularNormalMapSample
         private Texture2D _cell;
         private Texture2D _cellNormalMap;
         private Effect _circularNormalMapShader;
-        private Vector3 _lightDirection = Vector3.Zero;
+        private Vector3 _lightPosition = Vector3.Zero;
         private Vector3 _lightColor = Vector3.One;
         private Vector3 _ambienceColor = new Vector3(0.35f);
+
+        private Matrix _worldMatrix;
 
         public event EventHandler GameInitialized;
 
@@ -49,6 +52,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
                 GraphicsDevice.PresentationParameters.BackBufferWidth,
                 GraphicsDevice.PresentationParameters.BackBufferHeight);
 
+            _worldMatrix = Matrix.CreateScale(1f, 1f, 1f);
         }
 
         public void LoadInitializationData()
@@ -77,36 +81,35 @@ namespace PixelShaderGallery.CircularNormalMapSample
             }
         }
 
-        //public void SetLightDirectionX(float value)
-        //    => _lightDirection.X = value;
+        public void SetLightColorX(float value)
+            => _lightColor.X = value;
 
-        //public void SetLightDirectionY(float value)
-        //    => _lightDirection.Y = value;
+        public void SetLightColorY(float value)
+            => _lightColor.Y = value;
 
-        //public void SetLightDirectionZ(float value)
-        //    => _lightDirection.Z = value;
+        public void SetLightColorZ(float value)
+            => _lightColor.Z = value;
 
-        //public void SetLightColorX(float value)
-        //    => _lightColor.X = value;
+        public void SetAmbienceColorX(float value)
+            => _ambienceColor.X = value;
 
-        //public void SetLightColorY(float value)
-        //    => _lightColor.Y = value;
+        public void SetAmbienceColorY(float value)
+            => _ambienceColor.Y = value;
 
-        //public void SetLightColorZ(float value)
-        //    => _lightColor.Z = value;
-
-        //public void SetAmbienceColorX(float value)
-        //    => _ambienceColor.X = value;
-
-        //public void SetAmbienceColorY(float value)
-        //    => _ambienceColor.Y = value;
-
-        //public void SetAmbienceColorZ(float value)
-        //    => _ambienceColor.Z = value;
+        public void SetAmbienceColorZ(float value)
+            => _ambienceColor.Z = value;
 
         protected override void Update(GameTime gameTime)
         {
+            var mouse = Mouse.GetState();
+            var pointPosition = PointToScreen(mouse.X, mouse.Y);
+            _lightPosition = new Vector3(pointPosition.X, pointPosition.Y, 0.5f);
+        }
 
+        private Point PointToScreen(int x, int y)
+        {
+            var invertedMatrix = Matrix.Invert(_worldMatrix);
+            return Vector2.Transform(new Vector2(x, y), invertedMatrix).ToPoint();
         }
 
         protected override void Draw(GameTime time)
@@ -139,12 +142,14 @@ namespace PixelShaderGallery.CircularNormalMapSample
             //// Compose postprocessed image
             GraphicsDevice.SetRenderTarget(defaultRenderTarget);
             GraphicsDevice.Clear(Color.Black);
-            _circularNormalMapShader.Parameters["LightDirection"].SetValue(_lightDirection);
+            _circularNormalMapShader.Parameters["LightPosition"].SetValue(_lightPosition);
             _circularNormalMapShader.Parameters["LightColor"].SetValue(_lightColor);
             _circularNormalMapShader.Parameters["AmbientColor"].SetValue(_ambienceColor);
+            _circularNormalMapShader.Parameters["World"].SetValue(_worldMatrix);
+            _circularNormalMapShader.Parameters["ViewProjection"].SetValue(_worldMatrix);
             _circularNormalMapShader.Parameters["NormalTexture"].SetValue((Texture2D)_normalMapRenderTarget);
             _circularNormalMapShader.CurrentTechnique.Passes[0].Apply();
-
+            
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, SamplerState.LinearClamp, null, null, _circularNormalMapShader);
             _spriteBatch.Draw((Texture2D)_baseSceneRenderTarget, Vector2.Zero, Color.White);
             _spriteBatch.End();

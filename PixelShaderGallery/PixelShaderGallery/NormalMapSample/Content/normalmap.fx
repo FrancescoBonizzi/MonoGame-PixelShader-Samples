@@ -19,10 +19,10 @@ SamplerState NormalSampler = sampler_state
 
 float4 main(float4 pos : SV_POSITION, float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_TARGET0
 {
-	//Look up the texture value
+	// Look up the texture value
 	float4 tex = ScreenTexture.Sample(TextureSampler, texCoord);
 
-	//Look up the normalmap value
+	// Look up the normalmap value
 	float4 normal = 2 * NormalTexture.Sample(NormalSampler, texCoord) - 1;
 
 	// Compute lighting.

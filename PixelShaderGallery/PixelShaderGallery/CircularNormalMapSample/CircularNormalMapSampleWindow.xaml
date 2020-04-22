@@ -25,7 +25,129 @@
             <StackPanel
                 Grid.Column="1"
                 Margin="10"
-                Orientation="Vertical" />
+                Orientation="Vertical">
+
+                <TextBlock
+                    Margin="0,10"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Text="Point Light Normal Map parameters"
+                    TextWrapping="WrapWithOverflow" />
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        VerticalAlignment="Center"
+                        Text="Open the base image: " />
+                    <Button
+                        x:Name="OpenBaseImage"
+                        Padding="5"
+                        Click="OpenBaseImage_Click"
+                        Content="Open" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        VerticalAlignment="Center"
+                        Text="Load normal map image: " />
+                    <Button
+                        x:Name="LoadNormalMapButton"
+                        Padding="5"
+                        Click="LoadNormalMapButton_Click"
+                        Content="Load" />
+                </StackPanel>
+
+                <Rectangle
+                    Height="2"
+                    Margin="10"
+                    Fill="DarkGray" />
+
+                <StackPanel Margin="5" Orientation="Vertical">
+                    <TextBlock>
+                        <Run Text="Light color X: " />
+                        <Run Text="{Binding Value, ElementName=LightColorX}" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="LightColorX"
+                        Maximum="1"
+                        Minimum="0"
+                        TickFrequency="0.001"
+                        Value="1" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Vertical">
+                    <TextBlock>
+                        <Run Text="Light color Y: " />
+                        <Run Text="{Binding Value, ElementName=LightColorY}" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="LightColorY"
+                        Maximum="1"
+                        Minimum="0"
+                        TickFrequency="0.001"
+                        Value="1" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Vertical">
+                    <TextBlock>
+                        <Run Text="Light color Z: " />
+                        <Run Text="{Binding Value, ElementName=LightColorZ}" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="LightColorZ"
+                        Maximum="1"
+                        Minimum="0"
+                        TickFrequency="0.001"
+                        Value="1" />
+                </StackPanel>
+
+                <Rectangle
+                    Height="2"
+                    Margin="10"
+                    Fill="DarkGray" />
+
+                <StackPanel Margin="5" Orientation="Vertical">
+                    <TextBlock>
+                        <Run Text="Ambience color X: " />
+                        <Run Text="{Binding Value, ElementName=AmbienceColorX}" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="AmbienceColorX"
+                        Maximum="1"
+                        Minimum="0"
+                        TickFrequency="0.001"
+                        Value="0.35" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Vertical">
+                    <TextBlock>
+                        <Run Text="Ambience color Y: " />
+                        <Run Text="{Binding Value, ElementName=AmbienceColorY}" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="AmbienceColorY"
+                        Maximum="1"
+                        Minimum="0"
+                        TickFrequency="0.001"
+                        Value="0.35" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Vertical">
+                    <TextBlock>
+                        <Run Text="Ambience color Z: " />
+                        <Run Text="{Binding Value, ElementName=AmbienceColorZ}" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="AmbienceColorZ"
+                        Maximum="1"
+                        Minimum="0"
+                        TickFrequency="0.001"
+                        Value="0.35" />
+                </StackPanel>
+
+
+            </StackPanel>
 
         </Grid>
 
