@@ -154,6 +154,7 @@
     <Content Include="CircularNormalMapSample\Content\circularnormalmap.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="CircularNormalMapSample\Content\ContentBuilder.mgcb" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
