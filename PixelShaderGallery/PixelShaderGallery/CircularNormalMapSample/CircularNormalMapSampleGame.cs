@@ -1,15 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PixelShaderGallery.CircularNormalMapSample
 {
@@ -40,6 +34,9 @@ namespace PixelShaderGallery.CircularNormalMapSample
             // be called inside Initialize (before base.Initialize())
             _graphicsDeviceManager = new WpfGraphicsDeviceService(this);
             _spriteBatch = new SpriteBatch(_graphicsDeviceManager.GraphicsDevice);
+
+            _graphicsDeviceManager.GraphicsDevice.PresentationParameters.BackBufferWidth = 758;
+            _graphicsDeviceManager.GraphicsDevice.PresentationParameters.BackBufferHeight = 729;
 
             // Must be called after the WpfGraphicsDeviceService instance was created
             base.Initialize();

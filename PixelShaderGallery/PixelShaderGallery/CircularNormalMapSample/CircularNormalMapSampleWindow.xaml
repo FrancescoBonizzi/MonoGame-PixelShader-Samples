@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:PixelShaderGallery.CircularNormalMapSample"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Point Light Normal Map Sample"
-    Width="800"
-    Height="600"
+    Width="1024"
+    Height="768"
     ResizeMode="NoResize"
     mc:Ignorable="d">
 
