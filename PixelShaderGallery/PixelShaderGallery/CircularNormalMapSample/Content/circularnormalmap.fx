@@ -59,7 +59,6 @@ float4 PS(VertexShaderOutput input) : COLOR0
     float4 tex = ScreenTexture.Sample(TextureSampler, input.TexCoords);
 
     // Look up the normalmap value
-    //float4 normal = 2 * NormalTexture.Sample(NormalSampler, input.TexCoords) - 1;
     float3 normal = normalize((2 * NormalTexture.Sample(NormalSampler, input.TexCoords)) - 1);
     normal.y *= -1;
 
@@ -72,8 +71,6 @@ float4 PS(VertexShaderOutput input) : COLOR0
     input.Color.rgb *= AmbientColor + (lightAmount * LightColor);
     
     return input.Color * tex;
-
-    // if you have multiple pointlights, do a loop over every light you have and combine the outcome
 }
 
 technique PointLightNormalMap

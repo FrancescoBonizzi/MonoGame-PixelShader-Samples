@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:PixelShaderGallery.CircularNormalMapSample"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Point Light Normal Map Sample"
-    Width="800"
-    Height="600"
+    Width="1024"
+    Height="768"
     ResizeMode="NoResize"
     mc:Ignorable="d">
 
@@ -44,6 +44,31 @@
                         Padding="5"
                         Click="OpenBaseImage_Click"
                         Content="Open" />
+                </StackPanel>
+
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        VerticalAlignment="Center"
+                        Text="Open the normal image: " />
+                    <Button
+                        x:Name="OpenNormalImage"
+                        Padding="5"
+                        Click="OpenNormalImage_Click"
+                        Content="Open" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        VerticalAlignment="Center"
+                        Text="Load base image: " />
+                    <Button
+                        x:Name="LoadBaseImageButton"
+                        Padding="5"
+                        Click="LoadBaseImageButton_Click"
+                        Content="Load" />
                 </StackPanel>
 
                 <StackPanel Margin="5" Orientation="Horizontal">

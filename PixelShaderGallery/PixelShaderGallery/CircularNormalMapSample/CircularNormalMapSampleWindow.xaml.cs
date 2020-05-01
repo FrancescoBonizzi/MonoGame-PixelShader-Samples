@@ -55,10 +55,33 @@ namespace PixelShaderGallery.CircularNormalMapSample
             }
         }
 
+
+        private void LoadBaseImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog()
+            {
+                Filter = "PNG image|*.png",
+                Multiselect = false
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var filePath = Path.GetFullPath(openFileDialog.FileName);
+                _game.SetBaseImage(filePath);
+            }
+        }
+
         private void OpenBaseImage_Click(object sender, RoutedEventArgs e)
         {
             var imageFullPath = Path.GetFullPath("CircularNormalMapSample/Content/cell.png");
             Process.Start(imageFullPath);
         }
+
+        private void OpenNormalImage_Click(object sender, RoutedEventArgs e)
+        {
+            var imageFullPath = Path.GetFullPath("CircularNormalMapSample/Content/cell_normal.png");
+            Process.Start(imageFullPath);
+        }
+
     }
 }
