@@ -46,6 +46,31 @@
                         Content="Open" />
                 </StackPanel>
 
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        VerticalAlignment="Center"
+                        Text="Open the normal image: " />
+                    <Button
+                        x:Name="OpenNormalImage"
+                        Padding="5"
+                        Click="OpenNormalImage_Click"
+                        Content="Open" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        VerticalAlignment="Center"
+                        Text="Load base image: " />
+                    <Button
+                        x:Name="LoadBaseImageButton"
+                        Padding="5"
+                        Click="LoadBaseImageButton_Click"
+                        Content="Load" />
+                </StackPanel>
+
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <TextBlock
                         Width="150"

@@ -92,6 +92,14 @@ namespace PixelShaderGallery.CircularNormalMapSample
             _circularNormalMapShader = Content.Load<Effect>("circularnormalmap");
         }
 
+        public void SetBaseImage(string path)
+        {
+            using (var fileStream = new FileStream(path, FileMode.Open))
+            {
+                _cell = Texture2D.FromStream(_graphicsDeviceManager.GraphicsDevice, fileStream);
+            }
+        }
+
         public void SetNormalMap(string path)
         {
             using (var fileStream = new FileStream(path, FileMode.Open))
