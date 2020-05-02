@@ -98,10 +98,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HighlightLightsSample\HighlightLightsSample.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -114,10 +110,6 @@
     <Compile Include="CircularNormalMapSample\CircularNormalMapSampleWindow.xaml.cs">
       <DependentUpon>CircularNormalMapSampleWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HighlightLightsSample\HighlightLightsSample.xaml.cs">
-      <DependentUpon>HighlightLightsSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HighlightLightsSample\HighlightLightsSampleGame.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -156,14 +148,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CircularNormalMapSample\Content\circularnormalmap.fx" />
-    <Content Include="HighlightLightsSample\Content\cell.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HighlightLightsSample\Content\cellspec.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HighlightLightsSample\Content\highlightlights.fx" />
-    <Resource Include="HighlightLightsSample\Content\lightmask.png" />
     <Content Include="NormalMapSample\Content\normalmap.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -171,13 +155,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="CircularNormalMapSample\Content\ContentBuilder.mgcb" />
-    <None Include="HighlightLightsSample\Content\ContentBuilder.mgcb" />
-    <Content Include="HighlightLightsSample\Content\highlightlights.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HighlightLightsSample\Content\lightmask.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

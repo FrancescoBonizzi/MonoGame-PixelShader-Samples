@@ -78,14 +78,6 @@
                 <TextBlock VerticalAlignment="Center" Text="Point Light Normal map shader effect" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Style="{StaticResource LinkContainer}">
-                <Button
-                    x:Name="HighlightMapButton"
-                    Click="HighlightMapButton_Click"
-                    Content="Highlight Map" />
-                <TextBlock VerticalAlignment="Center" Text="Highlight map shader effect" />
-            </StackPanel>
-
         </StackPanel>
 
     </Grid>
