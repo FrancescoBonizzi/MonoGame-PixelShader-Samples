@@ -20,11 +20,5 @@ namespace PixelShaderGallery
             var gallery = new CircularNormalMapSample.CircularNormalMapSampleWindow();
             gallery.ShowDialog();
         }
-
-        private void HighlightMapButton_Click(object sender, RoutedEventArgs e)
-        {
-            var gallery = new HighlightLightsSample.HighlightLightsSampleWindow();
-            gallery.ShowDialog();
-        }
     }
 }
