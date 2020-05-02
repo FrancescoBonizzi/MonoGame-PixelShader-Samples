@@ -90,6 +90,24 @@
 
                 <StackPanel Margin="5" Orientation="Vertical">
                     <TextBlock>
+                        <Run Text="Light direction Z: " />
+                        <Run Text="{Binding Value, ElementName=LightDirectionZ}" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="LightDirectionZ"
+                        Maximum="1000"
+                        Minimum="0"
+                        TickFrequency="1"
+                        Value="0" />
+                </StackPanel>
+                
+                <Rectangle
+                    Height="2"
+                    Margin="10"
+                    Fill="DarkGray" />
+                
+                <StackPanel Margin="5" Orientation="Vertical">
+                    <TextBlock>
                         <Run Text="Light color X: " />
                         <Run Text="{Binding Value, ElementName=LightColorX}" />
                     </TextBlock>

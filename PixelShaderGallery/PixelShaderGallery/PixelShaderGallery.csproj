@@ -164,9 +164,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LightMaskSample\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="NormalMapSample\Content\cell.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

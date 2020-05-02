@@ -25,6 +25,8 @@ namespace PixelShaderGallery.CircularNormalMapSample
         private Matrix _worldMatrix;
         private WpfMouse _mouse;
 
+        private float _lightDirectionZ = 0f;
+
         public event EventHandler GameInitialized;
 
         protected override void Initialize()
@@ -123,10 +125,13 @@ namespace PixelShaderGallery.CircularNormalMapSample
         public void SetAmbienceColorZ(float value)
             => _ambienceColor.Z = value;
 
+        public void SetLightDirectionZ(float value)
+            => _lightDirectionZ = value;
+
         protected override void Update(GameTime gameTime)
         {
             var mouse = _mouse.GetState();
-            _lightPosition = new Vector3(mouse.X, mouse.Y, 0f);
+            _lightPosition = new Vector3(mouse.X, mouse.Y, _lightDirectionZ);
         }
 
         protected override void Draw(GameTime time)
