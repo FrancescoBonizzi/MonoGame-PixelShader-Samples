@@ -33,6 +33,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
             AmbienceColorZ.ValueChanged += (obj, args) => _game.SetAmbienceColorZ((float)args.NewValue);
 
             LightDirectionZ.ValueChanged += (obj, args) => _game.SetLightDirectionZ((float)args.NewValue);
+            LightDistance.ValueChanged += (obj, args) => _game.SetLightDistance((float)args.NewValue);
         }
 
         protected override void OnClosing(CancelEventArgs e)

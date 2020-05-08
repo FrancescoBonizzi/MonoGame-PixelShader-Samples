@@ -3,6 +3,7 @@
 float3 LightPosition; // in World Space
 float3 LightColor = 1.0;
 float3 AmbientColor = 0.35;
+float LightDistanceSquared;
 
 float4x4 World;
 float4x4 ViewProjection;
@@ -62,13 +63,13 @@ float4 PS(VertexShaderOutput input) : COLOR0
     float3 normal = normalize((2 * NormalTexture.Sample(NormalSampler, input.TexCoords)) - 1);
     normal.y *= -1;
 
-    // do the same, what you do for a regular directional light as you now have the light direction for this pixel and that pointlight, you may also want to calculate fallof distance etc depending on distance - this is where it gets pretty specific
-    // TODO Introduce fall-off of light intensity
-    // TODO diffuseLighting *= (LightDistanceSquared / dot(LightPosition - input.PosWorld, LightPosition - input.PosWorld));
+    // Introduce fall-off of light intensity
+    float diffuseLighting = saturate(dot(normal, -lightdir));
+    diffuseLighting *= (LightDistanceSquared / dot(LightPosition - input.PosWorld, LightPosition - input.PosWorld));
 
     // Compute lighting
     float lightAmount = saturate(dot(normal, -lightdir));
-    input.Color.rgb *= AmbientColor + (lightAmount * LightColor);
+    input.Color.rgb *= AmbientColor + (lightAmount * LightColor * diffuseLighting);
     
     return input.Color * tex;
 }

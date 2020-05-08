@@ -26,6 +26,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
         private WpfMouse _mouse;
 
         private float _lightDirectionZ = 0f;
+        private float _lightDistanceSquared = 0f;
 
         public event EventHandler GameInitialized;
 
@@ -128,6 +129,9 @@ namespace PixelShaderGallery.CircularNormalMapSample
         public void SetLightDirectionZ(float value)
             => _lightDirectionZ = value;
 
+        public void SetLightDistance(float value)
+            => _lightDistanceSquared = value;
+
         protected override void Update(GameTime gameTime)
         {
             var mouse = _mouse.GetState();
@@ -167,6 +171,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
             _circularNormalMapShader.Parameters["LightColor"].SetValue(_lightColor);
             _circularNormalMapShader.Parameters["AmbientColor"].SetValue(_ambienceColor);
             _circularNormalMapShader.Parameters["World"].SetValue(_worldMatrix);
+            _circularNormalMapShader.Parameters["LightDistanceSquared"].SetValue(_lightDistanceSquared);
             _circularNormalMapShader.Parameters["ViewProjection"].SetValue(GetProjectionMatrix());
             _circularNormalMapShader.Parameters["NormalTexture"].SetValue((Texture2D)_normalMapRenderTarget);
             _circularNormalMapShader.CurrentTechnique.Passes[0].Apply();

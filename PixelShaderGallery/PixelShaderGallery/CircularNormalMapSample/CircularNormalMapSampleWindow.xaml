@@ -100,7 +100,20 @@
                         TickFrequency="1"
                         Value="0" />
                 </StackPanel>
-                
+
+                <StackPanel Margin="5" Orientation="Vertical">
+                    <TextBlock>
+                        <Run Text="Light distance: " />
+                        <Run Text="{Binding Value, ElementName=LightDistance}" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="LightDistance"
+                        Maximum="100000"
+                        Minimum="0"
+                        TickFrequency="1"
+                        Value="0" />
+                </StackPanel>
+
                 <Rectangle
                     Height="2"
                     Margin="10"
