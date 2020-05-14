@@ -66,8 +66,8 @@
                 <Button
                     x:Name="NormalMapButton"
                     Click="NormalMapButton_Click"
-                    Content="Normal Map" />
-                <TextBlock VerticalAlignment="Center" Text="Normal map shader effect" />
+                    Content="Diffuse Normal Map" />
+                <TextBlock VerticalAlignment="Center" Text="Diffuse Normal map shader effect" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Style="{StaticResource LinkContainer}">
@@ -76,6 +76,14 @@
                     Click="CircularNormalMapButton_Click"
                     Content="Point Light Normal Map" />
                 <TextBlock VerticalAlignment="Center" Text="Point Light Normal map shader effect" />
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Style="{StaticResource LinkContainer}">
+                <Button
+                    x:Name="SpecularMapButton"
+                    Click="SpecularMapButton_Click"
+                    Content="Specular Map" />
+                <TextBlock VerticalAlignment="Center" Text="Specular map shader effect" />
             </StackPanel>
 
         </StackPanel>

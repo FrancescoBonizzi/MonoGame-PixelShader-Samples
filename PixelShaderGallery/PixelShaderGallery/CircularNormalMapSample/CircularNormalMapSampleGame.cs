@@ -176,9 +176,6 @@ namespace PixelShaderGallery.CircularNormalMapSample
             _circularNormalMapShader.Parameters["NormalTexture"].SetValue((Texture2D)_normalMapRenderTarget);
             _circularNormalMapShader.CurrentTechnique.Passes[0].Apply();
             
-            //	// if you have multiple pointlights, do a loop over every light you have and combine the outcome
-            // semplicemente li sommo
-
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, SamplerState.LinearClamp, null, null, _circularNormalMapShader);
             _spriteBatch.Draw((Texture2D)_baseSceneRenderTarget, Vector2.Zero, Color.White);
             _spriteBatch.End();

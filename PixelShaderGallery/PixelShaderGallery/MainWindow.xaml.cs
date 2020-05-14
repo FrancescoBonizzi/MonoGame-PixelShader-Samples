@@ -20,5 +20,11 @@ namespace PixelShaderGallery
             var gallery = new CircularNormalMapSample.CircularNormalMapSampleWindow();
             gallery.ShowDialog();
         }
+
+        private void SpecularMapButton_Click(object sender, RoutedEventArgs e)
+        {
+            var gallery = new SpecularMapSample.SpecularMapSampleWindow();
+            gallery.ShowDialog();
+        }
     }
 }
