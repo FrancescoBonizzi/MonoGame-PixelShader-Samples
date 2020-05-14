@@ -106,7 +106,6 @@ namespace PixelShaderGallery.SpecularMapSample
         protected override void Draw(GameTime time)
         {
             var mousePosition = _mouse.GetState();
-
             var defaultRenderTarget = (RenderTarget2D)GraphicsDevice.GetRenderTargets()[0].RenderTarget;
 
             // Draws everything normal
@@ -151,8 +150,7 @@ namespace PixelShaderGallery.SpecularMapSample
             // todo cambia nome in lightmask
             _specularMapShader.Parameters["SpecularTexture"].SetValue((Texture2D)_specularMapLightMaskRenderTarget);
             _specularMapShader.CurrentTechnique.Passes[0].Apply();
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(_specularMapRenderTarget, Vector2.Zero, Color.White);
+            _spriteBatch.Begin(effect: _specularMapShader);
             _spriteBatch.Draw(_specularMapRenderTarget, Vector2.Zero, Color.White);
             _spriteBatch.End();
 
@@ -160,44 +158,10 @@ namespace PixelShaderGallery.SpecularMapSample
             GraphicsDevice.SetRenderTarget(defaultRenderTarget);
             GraphicsDevice.Clear(Color.Black);
 
-            _spriteBatch.Begin();
-            //_spriteBatch.Draw((Texture2D)_baseSceneRenderTarget, Vector2.Zero, Color.White);
+            _spriteBatch.Begin(blendState: BlendState.Additive);
+            _spriteBatch.Draw((Texture2D)_baseSceneRenderTarget, Vector2.Zero, Color.White);
             _spriteBatch.Draw((Texture2D)_lightsRenderTarget, Vector2.Zero, Color.White);
             _spriteBatch.End();
         }
     }
 }
-
-//private void DrawLightMap(
-//           SpriteBatch spriteBatch,
-//           RenderTarget2D virtualDrawTarget,
-//           Matrix viewMatrix)
-//{
-//    _graphicsDevice.SetRenderTarget(_lightMaskRenderTarget);
-//    _graphicsDevice.Clear(_backgroundColorForLightMask);
-//    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: viewMatrix);
-
-//    _player.DrawLightMap(spriteBatch);
-
-//    foreach (var enemy in _enemies)
-//    {
-//        enemy.DrawLightMap(spriteBatch);
-//    }
-
-//    _exit.LightMap.Draw(spriteBatch);
-//    foreach (var littleLight in _gameGrid.LittleLights)
-//    {
-//        littleLight.LightMap.Draw(spriteBatch);
-//    }
-//    _candlesManager.DrawLightmap(spriteBatch);
-
-
-//    spriteBatch.End();
-
-//    _graphicsDevice.SetRenderTarget(virtualDrawTarget);
-//}
-
-//// LightMask
-//spriteBatch.Begin(SpriteSortMode.Immediate, _blendStateMultiply);
-//            spriteBatch.Draw(_lightMaskRenderTarget, Vector2.Zero, Color.White);
-//            spriteBatch.End();
