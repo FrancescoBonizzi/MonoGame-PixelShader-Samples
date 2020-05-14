@@ -117,10 +117,6 @@ namespace PixelShaderGallery.SpecularMapSample
                 {
                     _spriteBatch.Draw(_cell, new Vector2(col, row), Color.White);
                 }
-            //_spriteBatch.Draw(
-            //      _lightTexture,
-            //      new Vector2(mousePosition.X, mousePosition.Y) - new Vector2(_lightTexture.Width / 2, _lightTexture.Height / 2),
-            //      Color.White);
             _spriteBatch.End();
 
             // Draws the specular map
@@ -139,25 +135,25 @@ namespace PixelShaderGallery.SpecularMapSample
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(blendState: BlendState.NonPremultiplied);
             _spriteBatch.Draw(
-               _lightTexture,
-               new Vector2(mousePosition.X, mousePosition.Y) - new Vector2(_lightTexture.Width / 2, _lightTexture.Height / 2),
-               Color.White);
+               texture: _lightTexture,
+               position: new Vector2(mousePosition.X, mousePosition.Y),
+               color: Color.White,
+               origin: new Vector2(_lightTexture.Width / 2, _lightTexture.Height / 2),
+               scale: new Vector2(2f));
             _spriteBatch.End();
 
             // Applies the lightmask in specular
             GraphicsDevice.SetRenderTarget(_lightsRenderTarget);
             GraphicsDevice.Clear(Color.Black);
-            // todo cambia nome in lightmask
             _specularMapShader.Parameters["SpecularTexture"].SetValue((Texture2D)_specularMapLightMaskRenderTarget);
             _specularMapShader.CurrentTechnique.Passes[0].Apply();
             _spriteBatch.Begin(effect: _specularMapShader);
             _spriteBatch.Draw(_specularMapRenderTarget, Vector2.Zero, Color.White);
             _spriteBatch.End();
 
-            //   // Compose postprocessed image
+            // Compose postprocessed image
             GraphicsDevice.SetRenderTarget(defaultRenderTarget);
             GraphicsDevice.Clear(Color.Black);
-
             _spriteBatch.Begin(blendState: BlendState.Additive);
             _spriteBatch.Draw((Texture2D)_baseSceneRenderTarget, Vector2.Zero, Color.White);
             _spriteBatch.Draw((Texture2D)_lightsRenderTarget, Vector2.Zero, Color.White);
