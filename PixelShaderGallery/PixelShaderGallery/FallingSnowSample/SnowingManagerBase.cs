@@ -15,7 +15,7 @@ namespace PixelShaderGallery.FallingSnowSample
         /// <summary>
         /// How often a particle is produced
         /// </summary>
-        public float GenerateSpeed = 0.05f;
+        public float GenerateSpeed = 1f;
 
         /// <summary>
         /// How often we apply the "GlobalVelociy" to our particles
