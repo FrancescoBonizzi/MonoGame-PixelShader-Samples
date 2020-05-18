@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace PixelShaderGallery.FallingSnowSample
 {
@@ -9,7 +10,7 @@ namespace PixelShaderGallery.FallingSnowSample
 
         public float Opacity { get; set; }
         public Vector2 Origin { get; set; }
-        public float Rotation { get; } = 0;// MathHelper.ToRadians(MathUtilities.Random.Next(0, 360));
+        public float Rotation { get; } = 0;
         public float Scale { get; set; } = 1f;
 
         public Rectangle Bounds => _texture.Bounds;
@@ -26,7 +27,7 @@ namespace PixelShaderGallery.FallingSnowSample
             Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(TimeSpan elapsed)
         {
             Position += Velocity;
         }

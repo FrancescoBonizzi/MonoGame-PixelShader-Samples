@@ -94,7 +94,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FallingSnowSample\SnowingManagerBase.cs" />
     <Compile Include="FallingSnowSample\FallingSnowSampleGame.cs" />
     <Compile Include="FallingSnowSample\FallingSnowSampleWindow.xaml.cs">
       <DependentUpon>FallingSnowSampleWindow.xaml</DependentUpon>

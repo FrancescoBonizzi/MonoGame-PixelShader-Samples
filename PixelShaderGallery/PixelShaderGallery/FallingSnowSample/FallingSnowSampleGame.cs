@@ -53,9 +53,10 @@ namespace PixelShaderGallery.FallingSnowSample
 
         protected override void Update(GameTime gameTime)
         {
-            _snowingManager0.Update(gameTime);
-            _snowingManager1.Update(gameTime);
-            _snowingManager2.Update(gameTime);
+            var elapsed = gameTime.ElapsedGameTime;
+            _snowingManager0.Update(elapsed);
+            _snowingManager1.Update(elapsed);
+            _snowingManager2.Update(elapsed);
         }
 
         protected override void Draw(GameTime gameTime)
