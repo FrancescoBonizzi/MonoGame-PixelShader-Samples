@@ -94,11 +94,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FallingSnowSample\SnowingManagerBase.cs" />
+    <Compile Include="FallingSnowSample\FallingSnowSampleGame.cs" />
+    <Compile Include="FallingSnowSample\FallingSnowSampleWindow.xaml.cs">
+      <DependentUpon>FallingSnowSampleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FallingSnowSample\MathUtilities.cs" />
+    <Compile Include="FallingSnowSample\SnowingManager.cs" />
+    <Compile Include="FallingSnowSample\SnowFlake.cs" />
     <Compile Include="SpecularMapSample\SpecularMapSampleGame.cs" />
     <Compile Include="SpecularMapSample\SpecularMapSampleWindow.xaml.cs">
       <DependentUpon>SpecularMapSampleWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="CircularNormalMapSample\CircularNormalMapSampleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FallingSnowSample\FallingSnowSampleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +157,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="FallingSnowSample\Content\snowflake.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SpecularMapSample\Content\cell.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

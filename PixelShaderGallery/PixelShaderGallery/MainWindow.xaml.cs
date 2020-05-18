@@ -26,5 +26,11 @@ namespace PixelShaderGallery
             var gallery = new SpecularMapSample.SpecularMapSampleWindow();
             gallery.ShowDialog();
         }
+
+        private void SnowButton_Click(object sender, RoutedEventArgs e)
+        {
+            var gallery = new FallingSnowSample.FallingSnowSampleWindow();
+            gallery.ShowDialog();
+        }
     }
 }

@@ -86,6 +86,14 @@
                 <TextBlock VerticalAlignment="Center" Text="Specular map shader effect" />
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal" Style="{StaticResource LinkContainer}">
+                <Button
+                    x:Name="SnowButton"
+                    Click="SnowButton_Click"
+                    Content="Snow" />
+                <TextBlock VerticalAlignment="Center" Text="Snowing effect for TOP-DOWN game (well, without pixel shaders :/)" />
+            </StackPanel>
+
         </StackPanel>
 
     </Grid>
