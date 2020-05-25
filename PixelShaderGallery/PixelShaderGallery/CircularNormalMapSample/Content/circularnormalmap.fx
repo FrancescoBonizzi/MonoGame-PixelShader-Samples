@@ -4,6 +4,7 @@ float3 LightPosition; // in World Space
 float3 LightColor = 1.0;
 float3 AmbientColor = 0.35;
 float LightDistanceSquared;
+float LightOpacity = 1.0;
 
 float4x4 World;
 float4x4 ViewProjection;
@@ -69,7 +70,7 @@ float4 PS(VertexShaderOutput input) : COLOR0
 
     // Compute lighting
     float lightAmount = saturate(dot(normal, -lightdir));
-    input.Color.rgb *= AmbientColor + (lightAmount * LightColor * diffuseLighting);
+    input.Color.rgb *= AmbientColor + (lightAmount * LightColor * diffuseLighting * LightOpacity);
     
     return input.Color * tex;
 }

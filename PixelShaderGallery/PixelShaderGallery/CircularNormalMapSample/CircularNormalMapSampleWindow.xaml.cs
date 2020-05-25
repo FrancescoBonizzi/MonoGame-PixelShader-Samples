@@ -34,6 +34,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
 
             LightDirectionZ.ValueChanged += (obj, args) => _game.SetLightDirectionZ((float)args.NewValue);
             LightDistance.ValueChanged += (obj, args) => _game.SetLightDistance((float)args.NewValue);
+            LightOpacity.ValueChanged += (obj, args) => _game.SetLightOpacity((float)args.NewValue);
         }
 
         protected override void OnClosing(CancelEventArgs e)

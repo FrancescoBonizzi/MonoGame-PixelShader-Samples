@@ -114,6 +114,19 @@
                         Value="0" />
                 </StackPanel>
 
+                <StackPanel Margin="5" Orientation="Vertical">
+                    <TextBlock>
+                        <Run Text="Light opacity: " />
+                        <Run Text="{Binding Value, ElementName=LightOpacity}" />
+                    </TextBlock>
+                    <Slider
+                        x:Name="LightOpacity"
+                        Maximum="1"
+                        Minimum="0"
+                        TickFrequency="0.001"
+                        Value="1" />
+                </StackPanel>
+
                 <Rectangle
                     Height="2"
                     Margin="10"

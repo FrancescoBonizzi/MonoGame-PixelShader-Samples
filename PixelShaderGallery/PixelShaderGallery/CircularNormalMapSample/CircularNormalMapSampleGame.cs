@@ -27,6 +27,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
 
         private float _lightDirectionZ = 0f;
         private float _lightDistanceSquared = 0f;
+        private float _lightOpacity = 1f;
 
         public event EventHandler GameInitialized;
 
@@ -132,6 +133,9 @@ namespace PixelShaderGallery.CircularNormalMapSample
         public void SetLightDistance(float value)
             => _lightDistanceSquared = value;
 
+        public void SetLightOpacity(float value)
+            => _lightOpacity = value;
+
         protected override void Update(GameTime gameTime)
         {
             var mouse = _mouse.GetState();
@@ -169,6 +173,7 @@ namespace PixelShaderGallery.CircularNormalMapSample
             GraphicsDevice.Clear(Color.Black);
             _circularNormalMapShader.Parameters["LightPosition"].SetValue(_lightPosition);
             _circularNormalMapShader.Parameters["LightColor"].SetValue(_lightColor);
+            _circularNormalMapShader.Parameters["LightOpacity"].SetValue(_lightOpacity);
             _circularNormalMapShader.Parameters["AmbientColor"].SetValue(_ambienceColor);
             _circularNormalMapShader.Parameters["World"].SetValue(_worldMatrix);
             _circularNormalMapShader.Parameters["LightDistanceSquared"].SetValue(_lightDistanceSquared);
